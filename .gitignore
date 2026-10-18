@@ -1,0 +1,10 @@
+# harvested data & checkpoints are large / regenerable
+training/data/
+training/_ckpt/
+# NOTE: adapters/main_lora/*.safetensors IS committed (it ships in the submission).
+# Only ignore stray safetensors elsewhere:
+/*.safetensors
+training/**/*.safetensors
+__pycache__/
+*.pyc
+.DS_Store

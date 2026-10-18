@@ -1,0 +1,8 @@
+# Generation config for the root agent.
+# Anti-footgun (README 10.1): keep thinking_budget modest and output cap high
+# enough that <|tool_call|> blocks are never truncated mid-emit.
+temperature: 0.0          # deterministic: SWE patching wants reproducible, not creative
+top_p: 1.0
+top_k: 64
+thinking_budget: 4096
+max_output_tokens: 16384

@@ -1,0 +1,8 @@
+# Optional per-task limits layered under the global 12h budget.
+# Rationale: cap any single task so one pathological repo can't eat the whole budget
+# and starve the remaining tasks. Resolution rate rewards finishing MANY tasks, so we
+# bound per-task cost and move on. Tune after the first baseline run.
+per_task:
+  max_wall_clock_seconds: 1200   # 20 min hard ceiling per task
+  max_turns: 40                  # cap agent/tool round-trips per task
+  max_tool_calls: 120            # safety net against tool-call loops

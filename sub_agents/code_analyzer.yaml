@@ -1,0 +1,20 @@
+# Read-only exploration sub-agent. The root agent delegates deep codebase tracing
+# here (via agent_tool with skip_summarization: true) so that large exploration
+# transcripts never bloat the root agent's context (README 10.4 compaction).
+#
+# NOTE: model MUST match the root agent's model (competition rule: one model across
+# all agents). Kept in sync with agent.yaml — update both together.
+name: code_analyzer
+model: gemma-4-e4b-it-qat-w4a16-ct
+
+instruction: !include ../prompts/analyzer.md
+
+# Read-only toolset: this agent investigates and reports, it never mutates the repo.
+tools:
+  - read_file
+  - get_status
+  - get_code_neighbors
+  - search_similar_code
+  - get_code_subgraph
+
+generate_content_config: !include ../configs/sampling.yaml
